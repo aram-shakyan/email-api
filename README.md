@@ -7,55 +7,40 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Introduction
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This API for sending email to specified email, There is used Laravel 8.* with Jetstream, Livewire
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Installation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. git clone https://github.com/aram-shakyan/email-api.git 
+2. composer install
+3. copy .env.example content into .env file
+4. configure Database configuration
+5. configure email for eg: mailtrap (please fill all email related keys)
+6. configure `RECEIVER_EMAIL` -> this key for sending each email to specified email
+7. configure `QUEUE_CONNECTION` for eg: `database` then queue will work with database (NOTE: the emails sending functionality working with queue)
+8. run `php artisan key:generate` 
+9. run `php artisan migrate`
+10. run `yarn install` or `npm install`
+11. run `yarn dev` or `npm run dev`
+12. configure vhost or run `php artisan serve`
 
-## Learning Laravel
+## How to use
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Open the webiste url
+2. Click on top right `Register` link
+3. Fill Registration data and submit 
+4. Login with specified email / password
+5. click top right `{name}` opens dropdown 
+6. click `API TOKENS` link
+7. set any Token name submit 
+8. copy modal token (this token for authentication API)
+9. open POSTMAN (you can import postman collection and check API endpoint)
+10. send email to Api Endpoint with copied token
+11. if `QUEUE_CONNECTION` not equal to `sync`  you need to run `php artisan queue:work` with `--tries=1` as you want
+12. after successfully email sent you can check email (which you specified on .env) and also can see the email on `dashboard`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Unit Test
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- For unit Test you can run `php artisan test`
